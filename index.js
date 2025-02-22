@@ -43,6 +43,25 @@ async function run() {
       const result = await taskCollection.insertOne(task);
       res.send(result);
     });
+    // todo work
+    app.get("/tasks/todo", async (req, res) => {
+      const query = { category: "todo" };
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
+
+    // progress work
+    app.get("/tasks/progress", async (req, res) => {
+      const query = { category: "progress" };
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
+    // done work
+    app.get("/tasks/done", async (req, res) => {
+      const query = { category: "done" };
+      const result = await taskCollection.find(query).toArray();
+      res.send(result);
+    });
 
     await client.db("admin").command({ ping: 1 });
     console.log(
